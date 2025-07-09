@@ -68,4 +68,19 @@ const init = async () => {
   input.addEventListener('keydown', handleKeyDown);
 };
 
+const api_url = "https://pokeapi.co/api/v2/pokemon/ditto"
+
+fetch(api_url)
+  .then(response => response.json())
+  .then(data => {
+    const img = document.createElement('img');
+    img.src = data.sprites.front_default;
+    img.alt = data.name;
+    document.body.appendChild(img);
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('Error',error);
+  });
+
 init();
