@@ -68,19 +68,13 @@ const init = async () => {
   input.addEventListener('keydown', handleKeyDown);
 };
 
-const api_url = "https://pokeapi.co/api/v2/pokemon/ditto"
+const api_url = "https://pokeapi.co/api/v2/pokemon?limit=150&offset=0"
 
-fetch(api_url)
-  .then(response => response.json())
-  .then(data => {
-    const img = document.createElement('img');
-    img.src = data.sprites.front_default;
-    img.alt = data.name;
-    document.body.appendChild(img);
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('Error',error);
-  });
+const fetchPokemonList = async () => {
+  const response = await fetch(api_url);
+  const data = await response.json();
+  console.log("dfsg");
+  return data.results
+}
 
 init();
